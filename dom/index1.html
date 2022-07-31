@@ -64,7 +64,10 @@ function showUserOnScreen(user)
   editBtn.appendChild(document.createTextNode('edit'));
   let parent=document.getElementById('users');
 
- let childhtml= `<li>${user.name1}-${user.email1}</li>`;
+ let childhtml= `<li id=${user.email1} >${user.name1}-${user.email1}
+  <button onclick=deleteitem('${user.email1}')>delete</button>
+  <button onclick=edititem('${user.email1}')>edit</button>
+  </li>`;
  //childhtml.appendChild(deleteBtn);
  //let childhtml=document.createElement('li');
 // childhtml.innerHTML=`<li>${user.name1}-${user.email1}</li>`;
@@ -72,11 +75,21 @@ function showUserOnScreen(user)
   // childhtml= chidhtml+deleteBtn;
   //chidhtml.appendChild(editBtn);
   parent.innerHTML=parent.innerHTML+childhtml;
-  parent.appendChild(deleteBtn);
-  parent.appendChild(editBtn);
-
 
 }
+function deleteitem(email){
+  localStorage.removeItem(email);
+  removeUserFromScreen(email);
+
+}
+function removeUserFromScreen(email)
+{
+  let parent=document.getElementById('users');
+  let child=document.getElementById(email);
+  parent.removeChild(child);
+}
+
+
 //let valuesof=JSON.parse(localStorage.getItem('userdetails'));
 //console.log(valuesof);
 </script>
