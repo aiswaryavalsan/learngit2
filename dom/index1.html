@@ -50,9 +50,30 @@
     console.log(email1);
    localStorage.setItem('name',name1);
     localStorage.setItem('email',email1);
-    localStorage.setItem('usedetails',JSON.stringify(obj));
+    localStorage.setItem(obj.email1,JSON.stringify(obj));
+   //document.write(localStorage.getItem('userdetails'));
+   showUserOnScreen(obj);
     
 }
+function showUserOnScreen(user)
+{
+  let deleteBtn=document.createElement('button');
+  let editBtn=document.createElement('button');
+  deleteBtn.appendChild(document.createTextNode('delete'));
+  editBtn.appendChild(document.createTextNode('edit'));
+  let parent=document.getElementById('users');
+ let childhtml= `<li>${user.name1}-${user.email1}</li>`;
+ //let childhtml=document.createElement('li');
+ childhtml.innerHTML=`<li>${user.name1}-${user.email1}</li>`;
+ //chidelement.appendChild(deleteBtn);
+  // childhtml= chidhtml+deleteBtn;
+  //chidhtml.appendChild(editBtn);
+  parent.innerHTML=parent.innerHTML+childhtml;
+
+
+}
+//let valuesof=JSON.parse(localStorage.getItem('userdetails'));
+//console.log(valuesof);
 </script>
 </body>
 </html>
