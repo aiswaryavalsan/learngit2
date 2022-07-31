@@ -52,6 +52,8 @@
     localStorage.setItem('email',email1);
     localStorage.setItem(obj.email1,JSON.stringify(obj));
    //document.write(localStorage.getItem('userdetails'));
+   document.getElementById('email').value='';
+  document.getElementById('name').value='';
    showUserOnScreen(obj);
     
 }
@@ -66,7 +68,7 @@ function showUserOnScreen(user)
 
  let childhtml= `<li id=${user.email1} >${user.name1}-${user.email1}
   <button onclick=deleteitem('${user.email1}')>delete</button>
-  <button onclick=edititem('${user.email1}')>edit</button>
+  <button onclick=edititem('${user.email1}','${user.name1}')>edit</button>
   </li>`;
  //childhtml.appendChild(deleteBtn);
  //let childhtml=document.createElement('li');
@@ -87,8 +89,17 @@ function removeUserFromScreen(email)
   let parent=document.getElementById('users');
   let child=document.getElementById(email);
   parent.removeChild(child);
+ 
 }
+function edititem(email,name)
+{
+ 
+  document.getElementById('email').value=email;
+  document.getElementById('name').value=name;
+  removeUserFromScreen(email);
+  deleteitem(email);
 
+}
 
 //let valuesof=JSON.parse(localStorage.getItem('userdetails'));
 //console.log(valuesof);
