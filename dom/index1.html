@@ -60,15 +60,20 @@ function showUserOnScreen(user)
   let deleteBtn=document.createElement('button');
   let editBtn=document.createElement('button');
   deleteBtn.appendChild(document.createTextNode('delete'));
+ 
   editBtn.appendChild(document.createTextNode('edit'));
   let parent=document.getElementById('users');
+
  let childhtml= `<li>${user.name1}-${user.email1}</li>`;
+ //childhtml.appendChild(deleteBtn);
  //let childhtml=document.createElement('li');
- childhtml.innerHTML=`<li>${user.name1}-${user.email1}</li>`;
+// childhtml.innerHTML=`<li>${user.name1}-${user.email1}</li>`;
  //chidelement.appendChild(deleteBtn);
   // childhtml= chidhtml+deleteBtn;
   //chidhtml.appendChild(editBtn);
   parent.innerHTML=parent.innerHTML+childhtml;
+  parent.appendChild(deleteBtn);
+  parent.appendChild(editBtn);
 
 
 }
