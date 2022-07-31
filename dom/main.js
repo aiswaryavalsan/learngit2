@@ -6,7 +6,7 @@
 // {
 //  e.preventDefault();
 //  var newitem=document.getElementById('item').value;
-//  console.log(newitem);
+
 //  var li=document.createElement('li');
 //  li.className='list-group-item';
 //  console.log(li);
