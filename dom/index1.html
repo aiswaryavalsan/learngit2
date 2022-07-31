@@ -38,13 +38,20 @@
   <script>
     function saveToLocalStorage(e)
 {
+  
     event.preventDefault();
     const name1=e.target.name.value;
     const email1=e.target.email.value;
+    const obj={
+     name1,
+    email1   
+  }
     console.log(name1);
     console.log(email1);
    localStorage.setItem('name',name1);
     localStorage.setItem('email',email1);
+    localStorage.setItem('usedetails',JSON.stringify(obj));
+    
 }
 </script>
 </body>
