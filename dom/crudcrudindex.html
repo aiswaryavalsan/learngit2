@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JS For Beginners</h1>
+  </header>
+
+  <section class="container">
+    <form onsubmit="saveToLocalStorage(event)">
+      <h1>Add User</h1>
+      <div class="msg"></div>
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name">
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="text" id="email">
+      </div>
+      <input class="btn" id="btn" type="submit" value="Submit">
+    </form>
+
+    <ul id="users"></ul>
+
+    <!-- <ul class="items">
+      <li class="item">Item 1</li>
+      <li class="item">Item 2</li>
+      <li class="item">Item 3</li>
+    </ul> -->
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+  <script>
+    function saveToLocalStorage(e)
+{
+  
+    event.preventDefault();
+    const name1=e.target.name.value;
+    const email1=e.target.email.value;
+    const obj={
+     name1,
+    email1   
+  }
+    console.log(name1);
+    console.log(email1);
+    axios.post("https://crudcrud.com/api/7d7a6c93e0e347169b7849717014d0cb/appointmendetails",obj)
+    .then((resolve)=>
+    showUserOnScreen(resolve.data))
+
+    .catch((err)=>
+    document.body.innerHTML=document.body.innerHTML+"<h4>something went wrong</h4>"
+    );
+   //localStorage.setItem('name',name1);
+   // localStorage.setItem('email',email1);
+    //localStorage.setItem(obj.email1,JSON.stringify(obj));
+   //document.write(localStorage.getItem('userdetails'));
+   document.getElementById('email').value='';
+  document.getElementById('name').value='';
+   //showUserOnScreen(obj);
+    
+}
+function showUserOnScreen(user)
+{
+  let deleteBtn=document.createElement('button');
+  let editBtn=document.createElement('button');
+  deleteBtn.appendChild(document.createTextNode('delete'));
+ 
+  editBtn.appendChild(document.createTextNode('edit'));
+  let parent=document.getElementById('users');
+
+ let childhtml= `<li id=${user.email1} >${user.name1}-${user.email1}
+  <button onclick=deleteitem('${user.email1}')>delete</button>
+  <button onclick=edititem('${user.email1}','${user.name1}')>edit</button>
+  </li>`;
+ //childhtml.appendChild(deleteBtn);
+ //let childhtml=document.createElement('li');
+// childhtml.innerHTML=`<li>${user.name1}-${user.email1}</li>`;
+ //chidelement.appendChild(deleteBtn);
+  // childhtml= chidhtml+deleteBtn;
+  //chidhtml.appendChild(editBtn);
+  parent.innerHTML=parent.innerHTML+childhtml;
+
+}
+function deleteitem(email){
+  localStorage.removeItem(email);
+  removeUserFromScreen(email);
+
+}
+function removeUserFromScreen(email)
+{
+  let parent=document.getElementById('users');
+  let child=document.getElementById(email);
+  parent.removeChild(child);
+ 
+}
+function edititem(email,name)
+{
+ 
+  document.getElementById('email').value=email;
+  document.getElementById('name').value=name;
+  removeUserFromScreen(email);
+  deleteitem(email);
+
+}
+
+//let valuesof=JSON.parse(localStorage.getItem('userdetails'));
+//console.log(valuesof);
+</script>
+</body>
+</html>
