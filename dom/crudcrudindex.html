@@ -63,6 +63,14 @@
    //showUserOnScreen(obj);
     
 }
+window.addEventListener("DOMContentLoaded",()=>{
+axios.get("https://crudcrud.com/api/7d7a6c93e0e347169b7849717014d0cb/appointmendetails")
+.then((response)=>{
+for(var i=0;i<response.data.length;i++){
+    showUserOnScreen(response.data[i]);
+}})
+.catch((err)=>console.log(err))
+})
 function showUserOnScreen(user)
 {
   let deleteBtn=document.createElement('button');
