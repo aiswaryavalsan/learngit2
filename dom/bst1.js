@@ -55,15 +55,25 @@ insertnewnode(node,newNode){
     else
     return true;
  }
+ preorder(node){
+    if(node===null)
+    return null;
+    document.write(node.data);
+    this.preorder(node.left);
+    this.preorder(node.right);
+ }
+
+ //
 };
  
  const bst1=new bst();
  bst1.insert(5);
- bst1.insert(6);
+ bst1.insert(9);
  bst1.insert(7);
  bst1.insert(8);
- bst1.insert(9);
+ bst1.insert(4);
 const root=bst1.getRootNode();
 document.write(bst1.search(root,7));
+bst1.preorder(root);
  
  
