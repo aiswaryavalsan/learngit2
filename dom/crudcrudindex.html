@@ -47,7 +47,7 @@
   }
     console.log(name1);
     console.log(email1);
-    axios.post("https://crudcrud.com/api/7d7a6c93e0e347169b7849717014d0cb/appointmendetails",obj)
+    axios.post("https://crudcrud.com/api/e8a57ef49c534d3098973dbe9d5458e9/appointmentdetails",obj)
     .then((resolve)=>
     showUserOnScreen(resolve.data))
 
@@ -64,7 +64,7 @@
     
 }
 window.addEventListener("DOMContentLoaded",()=>{
-axios.get("https://crudcrud.com/api/7d7a6c93e0e347169b7849717014d0cb/appointmendetails")
+axios.get("https://crudcrud.com/api/e8a57ef49c534d3098973dbe9d5458e9/appointmentdetails")
 .then((response)=>{
 for(var i=0;i<response.data.length;i++){
     showUserOnScreen(response.data[i]);
@@ -80,8 +80,8 @@ function showUserOnScreen(user)
   editBtn.appendChild(document.createTextNode('edit'));
   let parent=document.getElementById('users');
 
- let childhtml= `<li id=${user.email1} >${user.name1}-${user.email1}
-  <button onclick=deleteitem('${user.email1}')>delete</button>
+ let childhtml= `<li id=${user._id} >${user.name1}-${user.email1}
+  <button onclick=deleteitem('${user._id}')>delete</button>
   <button onclick=edititem('${user.email1}','${user.name1}')>edit</button>
   </li>`;
  //childhtml.appendChild(deleteBtn);
@@ -93,10 +93,14 @@ function showUserOnScreen(user)
   parent.innerHTML=parent.innerHTML+childhtml;
 
 }
-function deleteitem(email){
-  localStorage.removeItem(email);
-  removeUserFromScreen(email);
-
+function deleteitem(id){
+ // removeUserFromScreen(id);
+    axios.delete(`https://crudcrud.com/api/e8a57ef49c534d3098973dbe9d5458e9/appointmentdetails/${id}`)
+    .then((resolve)=>{
+    removeUserFromScreen(id)
+  })
+    .catch(err=>console.log(err));
+  
 }
 function removeUserFromScreen(email)
 {
