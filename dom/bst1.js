@@ -56,11 +56,20 @@ insertnewnode(node,newNode){
     return true;
  }
  preorder(node){
-    if(node===null)
-    return null;
-    document.write(node.data);
-    this.preorder(node.left);
-    this.preorder(node.right);
+   const s=[];
+   var cur;
+   if(node===null)
+   return null;
+   s.push(node);
+   while(s.length>=0){
+     cur=s.pop();
+    document.write(cur.data);
+    if(cur.right!=null)
+    s.push(cur.right);
+    if(cur.left!=null)
+    s.push(cur.left);
+   }
+
  }
 
  //
