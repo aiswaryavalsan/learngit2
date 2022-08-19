@@ -47,7 +47,7 @@
   }
     console.log(name1);
     console.log(email1);
-    axios.post("https://crudcrud.com/api/e8a57ef49c534d3098973dbe9d5458e9/appointmentdetails",obj)
+    axios.post("https://crudcrud.com/api/401250585e0844ac8528df7680fb95cb/appointmentdetails",obj)
     .then((resolve)=>
     showUserOnScreen(resolve.data))
 
@@ -64,7 +64,7 @@
     
 }
 window.addEventListener("DOMContentLoaded",()=>{
-axios.get("https://crudcrud.com/api/e8a57ef49c534d3098973dbe9d5458e9/appointmentdetails")
+axios.get("https://crudcrud.com/api/401250585e0844ac8528df7680fb95cb/appointmentdetails")
 .then((response)=>{
 for(var i=0;i<response.data.length;i++){
     showUserOnScreen(response.data[i]);
@@ -73,16 +73,16 @@ for(var i=0;i<response.data.length;i++){
 })
 function showUserOnScreen(user)
 {
-  let deleteBtn=document.createElement('button');
-  let editBtn=document.createElement('button');
-  deleteBtn.appendChild(document.createTextNode('delete'));
+ // let deleteBtn=document.createElement('button');
+  //let editBtn=document.createElement('button');
+ // deleteBtn.appendChild(document.createTextNode('delete'));
  
-  editBtn.appendChild(document.createTextNode('edit'));
+  //editBtn.appendChild(document.createTextNode('edit'));
   let parent=document.getElementById('users');
 
  let childhtml= `<li id=${user._id} >${user.name1}-${user.email1}
   <button onclick=deleteitem('${user._id}')>delete</button>
-  <button onclick=edititem('${user.email1}','${user.name1}')>edit</button>
+  <button onclick=edititem('${user._id}','${user.email1}','${user.name1}')>edit</button>
   </li>`;
  //childhtml.appendChild(deleteBtn);
  //let childhtml=document.createElement('li');
@@ -95,7 +95,7 @@ function showUserOnScreen(user)
 }
 function deleteitem(id){
  // removeUserFromScreen(id);
-    axios.delete(`https://crudcrud.com/api/e8a57ef49c534d3098973dbe9d5458e9/appointmentdetails/${id}`)
+    axios.delete(`https://crudcrud.com/api/401250585e0844ac8528df7680fb95cb/appointmentdetails/${id}`)
     .then((resolve)=>{
     removeUserFromScreen(id)
   })
@@ -109,13 +109,13 @@ function removeUserFromScreen(id)
   parent.removeChild(child);
  
 }
-function edititem(email,name)
+function edititem(id,email,name)
 {
  
   document.getElementById('email').value=email;
   document.getElementById('name').value=name;
-  removeUserFromScreen(email);
-  deleteitem(email);
+  
+  deleteitem(id);
 
 }
 
